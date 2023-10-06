@@ -57,57 +57,70 @@ def display_scoreboard(user_score, user_wickets, overs, computer_score, computer
 def condition1():
     global overs, user_score, user_wickets, computer_score, computer_wickets, innings
     print("\nBatting time:")
-    print("You get 2 overs(12 balls) you need to set a target for the computer.")
+    print("You get 2 overs (12 balls) to set a target for the computer.")
     print("If the computer chases the target, the computer wins. If not, you win.")
     print("If both your and computer's score is the same, it's a tie.\n")
-    for i in range(2):  # 2 overs
-        for j in range(6):  # 6 balls in an over
+    
+    overs = 0.0  # Reset overs for batting
+
+    for over in range(2):  # 2 overs
+        for ball in range(6):  # 6 balls in an over
             if user_wickets == 2:
                 break
-            overs += 0.1  # Increment the overs by 0.1 at the start of each ball
-            print(f"Here comes {int(overs)}.{int((overs - int(overs)) * 10)}")  # Display overs in the desired format
+
+            if overs == 0.6:
+                overs = 1.1
+            else:
+                overs += 0.1  # Increment the overs by 0.1 at the start of each ball
+            print(f"Here comes {round(overs, 1)}")  # Display overs in the desired format
             user_inp = int(input("Enter a number between 1-6 to score: "))
             comp_inp = random.randint(1, 6)
-            if user_inp > 6 or user_inp < 0:
+            
+            if user_inp < 1 or user_inp > 6:
                 print("Invalid Option selected")
                 continue
+            
+            if user_inp == comp_inp:
+                print("You are out")
+                user_wickets += 1
+                display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)
             else:
-                if user_inp == comp_inp:
-                    print(f"You are out, {'One more chance' if user_wickets == 1 else 'No more wickets left.'}")
-                    user_wickets += 1
-                    display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)                        
-                else:
-                    user_score += user_inp  # Increment user's score
-                    display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)
-    
-    print(f"Your batting over, your final score is\n{display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)}")
-    print(f"Computer has a target of {user_score+1} runs!")
-    
-    overs = 0.0
+                user_score += user_inp  # Increment user's score
+                display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)
+
+    print(f"Your batting over is finished, your final score is\n{user_score}/{user_wickets}")
+    print(f"Computer has a target of {user_score + 1} runs!")
+
+    overs = 0.0  # Reset overs for bowling
 
     print("\nBowling time:")
-    for i in range(2):  # 2 overs
-        for j in range(6):  # 6 balls in an over
-            if computer_score>user_score:
+    for over in range(2):  # 2 overs
+        for ball in range(6):  # 6 balls in an over
+            if computer_score > user_score:
                 print("Computer won the match!")
                 break
             if computer_wickets == 2:
                 break
-            overs += 0.1  # Increment the overs by 0.1 at the start of each ball
-            print(f"Here comes {int(overs)}.{int((overs - int(overs)) * 10)}")  # Display overs in the desired format
+
+            if overs == 0.6:
+                overs = 1.1
+            else:
+                overs += 0.1  # Increment the overs by 0.1 at the start of each ball
+            print(f"Here comes {round(overs, 1)}")  # Display overs in the desired format
             comp_inp = random.randint(1, 6)
             user_inp = int(input("Enter a number between 1-6 to take wicket: "))
-            if user_inp > 6 or user_inp < 0:
+            
+            if user_inp < 1 or user_inp > 6:
                 print("Invalid Option selected")
                 continue
+            
+            if comp_inp == user_inp:
+                print("Computer is out")
+                computer_wickets += 1
+                display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)
             else:
-                if comp_inp == user_inp:
-                    print(f"Computer is out, {'One more chance' if user_wickets == 1 else 'No more wickets left.'}")
-                    computer_wickets += 1
-                    display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)                        
-                else:
-                    computer_score += comp_inp  # Increment computer's score
-                    display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)
+                computer_score += comp_inp  # Increment computer's score
+                display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)
 
     if user_score == computer_score:
         print("The match is a tie!")
