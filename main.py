@@ -112,6 +112,19 @@ def condition1():
     else:
         print("Congrats, You won the match!!")
 
+# Condition 2 - user won the toss and choose to bowl first
+def condition2():
+    pass
+
+# Condition 3 - computer won the toss and choose to bat first
+def condition2():
+    pass
+
+# Condition 4 - computer won the toss and choose to bowl first
+def condition2():
+    pass
+
+
 def main():
     print("Welcome to CRICKET GAME!\n")
     print("Toss time!!\n")
@@ -120,6 +133,18 @@ def main():
     # Condition 1 - user won the toss and choose to bat first
     if toss_result == 'user' and user_decision == 'bat':
         condition1()
+
+    # Condition 2 - user won the toss and choose to bowl first
+    if toss_result == 'user' and user_decision == 'bowl':
+        condition2()
+
+    # Condition 3 - computer won the toss and choose to bat first
+    if toss_result == 'user' and user_decision == 'bowl':
+        condition3()
+
+    # Condition 2 - computer won the toss and choose to bowl first
+    if toss_result == 'user' and user_decision == 'bowl':
+        condition4()
 
 if __name__ == '__main__':
     main()
