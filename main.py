@@ -1,5 +1,11 @@
 import random
 
+overs = 0.0
+innings = 1
+computer_score = 0
+computer_wickets = 0
+user_score = 0
+user_wickets = 0
 
 def toss():
     while True:
