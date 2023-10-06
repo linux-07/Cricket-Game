@@ -10,6 +10,7 @@ user_decision = ''
 computer_decision = ''
 
 def toss():
+    global toss_result, toss, user_decision, computer_decision
     while True:
         user_input = input("Enter your choice (1 for Heads / 2 for Tails): ")
         if user_input == '1':
@@ -117,11 +118,11 @@ def condition2():
     pass
 
 # Condition 3 - computer won the toss and choose to bat first
-def condition2():
+def condition3():
     pass
 
 # Condition 4 - computer won the toss and choose to bowl first
-def condition2():
+def condition4():
     pass
 
 
@@ -139,11 +140,11 @@ def main():
         condition2()
 
     # Condition 3 - computer won the toss and choose to bat first
-    if toss_result == 'user' and user_decision == 'bowl':
+    if toss_result == 'computer' and computer_decision == 'bat':
         condition3()
 
-    # Condition 2 - computer won the toss and choose to bowl first
-    if toss_result == 'user' and user_decision == 'bowl':
+    # Condition 4 - computer won the toss and choose to bowl first
+    if toss_result == 'computer' and computer_decision == 'bowl':
         condition4()
 
 if __name__ == '__main__':
