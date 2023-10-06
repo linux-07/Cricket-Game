@@ -51,10 +51,11 @@ def display_scoreboard(user_score, user_wickets, overs, computer_score, computer
     print(f"\nScoreboard: (Inning: {innings})")
     print(f"Your score: {user_score}/{user_wickets}")
     print(f"Computer's score: {computer_score}/{computer_wickets}")
-    print(f"Overs bowled: {overs}")
+    print(f"Overs bowled: {round(overs, 1)}\n")
 
 # Condition 1 - user won the toss and choose to bat first
 def condition1():
+    global overs, user_score, user_wickets, computer_score, computer_wickets, innings
     print("\nBatting time:")
     print("You get 2 overs(12 balls) you need to set a target for the computer.")
     print("If the computer chases the target, the computer wins. If not, you win.")
@@ -82,6 +83,8 @@ def condition1():
     print(f"Your batting over, your final score is\n{display_scoreboard(user_score, user_wickets, overs, computer_score, computer_wickets, innings)}")
     print(f"Computer has a target of {user_score+1} runs!")
     
+    overs = 0.0
+
     print("\nBowling time:")
     for i in range(2):  # 2 overs
         for j in range(6):  # 6 balls in an over
@@ -132,19 +135,19 @@ def main():
     toss()
 
     # Condition 1 - user won the toss and choose to bat first
-    if toss_result == 'user' and user_decision == 'bat':
+    if toss == 'user' and user_decision == 'bat':
         condition1()
 
     # Condition 2 - user won the toss and choose to bowl first
-    if toss_result == 'user' and user_decision == 'bowl':
+    if toss == 'user' and user_decision == 'bowl':
         condition2()
 
     # Condition 3 - computer won the toss and choose to bat first
-    if toss_result == 'computer' and computer_decision == 'bat':
+    if toss == 'computer' and computer_decision == 'bat':
         condition3()
 
     # Condition 4 - computer won the toss and choose to bowl first
-    if toss_result == 'computer' and computer_decision == 'bowl':
+    if toss == 'computer' and computer_decision == 'bowl':
         condition4()
 
 if __name__ == '__main__':
